@@ -1,6 +1,7 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Socials from "src/socials";
+import Calculator from "src/calculator";
 
 const darkTheme = createTheme({
   palette: {
@@ -13,6 +14,7 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <Socials />
+      <Calculator />
     </ThemeProvider>
   );
 }
