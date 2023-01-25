@@ -3,7 +3,25 @@ import { styled } from "@mui/material/styles";
 import { Box, Paper, TextField, Stack, Button } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { blue, amber } from "@mui/material/colors";
-import { evaluate } from "mathjs";
+
+import {
+  create,
+  addDependencies,
+  subtractDependencies,
+  multiplyDependencies,
+  divideDependencies,
+  modDependencies,
+  evaluateDependencies,
+} from "mathjs";
+
+const { evaluate } = create({
+  evaluateDependencies,
+  addDependencies,
+  subtractDependencies,
+  multiplyDependencies,
+  divideDependencies,
+  modDependencies,
+});
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -35,23 +53,10 @@ export default function Calculator() {
   const [lastBtnPressed, setLastBtnPressed] = useState<string | null>(null);
 
   useEffect(() => {
-    // console.log("Result :", result);
-  }, [result]);
-
-  useEffect(() => {
-    // console.log("Intermediary Result :", intermediaryResult);
-  }, [intermediaryResult]);
-
-  useEffect(() => {
     if (operation !== null) {
       setLastBtnPressed(operation);
     }
-    // console.log("Operation :", operation);
   }, [operation]);
-
-  useEffect(() => {
-    // console.log("Last Button Pressed :", lastBtnPressed);
-  }, [lastBtnPressed]);
 
   function calculate(char: any) {
     if (char === "=") {

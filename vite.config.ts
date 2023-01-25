@@ -1,10 +1,21 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import removeConsole from "vite-plugin-remove-console";
 import fs from "fs";
 import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          mui: ["@mui/material"],
+          mathjs: ["mathjs"],
+        },
+      },
+    },
+  },
   server: {
     port: 3000,
     https: {
@@ -12,7 +23,7 @@ export default defineConfig({
       cert: fs.readFileSync("../.cert/cert.pem"),
     },
   },
-  plugins: [react()],
+  plugins: [react(), removeConsole()],
   resolve: {
     alias: [{ find: "src", replacement: path.resolve(__dirname, "src") }],
   },

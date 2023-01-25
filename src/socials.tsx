@@ -37,7 +37,8 @@ interface ISocials {
     | undefined;
 }
 
-const ContactEmail = "sean.stocker15@gmail.com";
+const env = import.meta.env;
+const ContactEmail = env.VITE_CONTACT_EMAIL;
 
 const actions: ISocials[] = [
   {
